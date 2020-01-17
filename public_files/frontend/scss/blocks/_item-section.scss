@@ -1,0 +1,25 @@
+.items-section{
+	padding: rem(45) 0 rem(30);
+
+	.box-items{
+		@include row-flex();
+		@include col();
+		@include size(9);
+		@include size-lg(12);
+		@include size-md(12);
+
+		margin-left: 0;
+		margin-right: 0;
+
+			@media screen and (max-width: 62rem){
+				margin-left: rem(15);
+				margin-right: rem(15);
+			}
+	}
+
+	.content-sidebar{
+		
+	}
+
+
+}// --end item-section

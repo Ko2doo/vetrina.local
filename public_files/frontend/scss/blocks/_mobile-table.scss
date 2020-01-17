@@ -1,0 +1,50 @@
+	.cwdtable {
+		margin-top: rem(18);
+		font-size: em(12);
+		color: $main-dark-grey;
+		width:100%;
+		border-width: 1px;
+		border-color: $main-element-grey;
+		border-collapse: collapse;
+
+			th {
+				font-size: em(12);
+				background: $main-e2e2;
+				border-width: 1px;
+				padding: 8px;
+				border-style: solid;
+				border-color: $main-d4d4;
+			}
+
+			tr {
+				background: $main-white;
+
+					&:hover{
+						background: $main-a5adb;
+					}
+			}
+
+			td {
+				font-size: em(12);
+				border-width: 1px;
+				padding: 8px;
+				border-style: solid;
+				border-color: $main-d4d4;
+			}
+
+			th,
+			td{
+				text-align: center;
+			}
+}
+
+.table-title{
+	@include font(em(24), 600);
+}
+
+.mobileTable {
+	padding-top: rem(40);
+	padding-bottom: rem(32);
+	overflow:auto;
+	width:100%
+}

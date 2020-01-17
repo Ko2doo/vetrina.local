@@ -1,0 +1,47 @@
+.content-sidebar{
+	@include col();
+	@include size(3);
+	@include size-lg(12);
+
+	max-height: 100vh;
+	height: auto;
+	overflow-x: hidden;
+	overflow-y: visible;
+
+
+		&__nav-item{}
+		
+		&__list-item{}
+		
+		&__li-item{
+			padding: rem(4) rem(12) rem(8);
+			border-bottom: 1px solid $main-e1e8;
+			@include transition($easeOut-1s, border-bottom, color);
+
+				&:last-child{
+					border-bottom: 0;
+				}
+
+				&:hover{
+					border-bottom: 1px solid $mark-green;
+					
+					&:last-child{
+						border-bottom: 0;
+					}
+				}
+
+				&:hover > a{
+					color: $main-2a2a;
+				}
+		}
+		
+		&__link-item{
+			@include font(em(18), 300);
+
+			color: $main-element-grey;
+		}
+
+		@media screen and (max-width: 62rem){
+			margin-bottom: rem(30);
+		}
+}// --end sidebar

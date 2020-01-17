@@ -1,0 +1,33 @@
+// Библиотека полезных функций:
+
+// переводим пиксели в ремы вызываем так: rem(18)
+@function rem($px) {
+	@return ($px / 16) +rem;
+}
+
+// переводим пиксели в em вызываем так: em(18)
+@function em($px) {
+	@return ($px / 16) +em;
+}
+
+.container {
+  @include container();
+  @include sm(max-width, rem(510));
+  @include md(max-width, rem(690));
+  @include lg(max-width, rem(930));
+  @include xl(max-width, rem(1110));
+}
+
+.error-message{
+	margin-left: rem(14);
+	@include font(em(14), 400);
+	color: $main-orange;
+
+		&::before{
+			content: '\f071';
+			font-family: 'FontAwesome';
+			font-size: em(18);
+			display: inline-flex;
+			margin-right: rem(8);
+		}
+}

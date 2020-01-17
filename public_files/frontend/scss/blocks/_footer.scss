@@ -1,0 +1,35 @@
+.footer{
+	padding: rem(20) 0 rem(12);
+	background-color: $main-dark-grey;
+	color: $main-counter;
+
+
+		.info-box{
+			@include col();
+			@include size(6);
+			@include size-lg(8);
+			@include size-md(12);
+
+
+				&__item-head{
+					@include font(em(20), 500);
+
+					margin-bottom: rem(20);
+				}
+		}
+
+		.copyright-box{
+			@include col();
+			@include size(6);
+			@include size-lg(8);
+			@include size-md(12);
+
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+				.copyright{
+					@include font(em(16), 400);
+				}
+		}
+}//--end footer

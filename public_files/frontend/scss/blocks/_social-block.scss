@@ -1,0 +1,33 @@
+.social-media{
+	display: flex;
+
+	&__li{
+		margin-right: rem(22);
+
+			&:last-child{
+				margin-right: 0;
+			}
+	}
+	
+	&__link{
+		font-size: em(18);
+		color: $main-white;
+
+		& > .social-icons{
+			@include transition($easeOut-2s, color);
+		}
+
+		&:hover > .tg{
+			color: $tg;
+		}
+
+		&:hover > .vk{
+			color: $vk;
+		}
+
+		&:hover > .fb{
+			color: $facebook;
+		}
+
+	}
+}

@@ -1,0 +1,38 @@
+<?php $this->view('header'); ?>
+
+<section class="user-register">
+	<div class="container">
+		<div class="row">
+			<form class="form" action="" method="post" accept-charset="utf-8">
+				<div class="form-group">
+					<label class="form-label__item" for="email">Введите email:</label>
+						<?php if( isset($errors['email']) ): ?>
+							<span class="error-message"><?= implode('<br>', $errors['email']) ?></span>
+						<?php endif; ?>
+						<input class="form-input__item" id="email" type="text" name="email" value="<?= $email ?>">		
+				</div>
+
+				<div class="form-group">
+					<label class="form-label__item" for="name">Введите Имя:</label>
+						<?php if( isset($errors['name']) ): ?>
+							<span class="error-message"><?= implode('<br>', $errors['name']) ?></span>
+						<?php endif; ?>
+						<input class="form-input__item" id="name" type="text" name="name" value="">
+				</div>
+
+				<div class="form-group">
+					<label class="form-label__item" for="pass">Введите пароль:</label>
+						<?php if( isset($errors['pass']) ): ?>
+							<span class="error-message"><?= implode('<br>', $errors['pass']) ?></span>
+						<?php endif; ?>
+						<input class="form-input__item" id="pass" type="password" name="pass" value="">
+				</div>
+				
+				<input class="btn-black" name="submit" type="submit" value="Регистрация">
+			</form>
+
+		</div>
+	</div>
+</section>
+
+<?php $this->view('footer'); ?>

@@ -1,0 +1,128 @@
+// стили для карточек
+.card-item{
+	@include col();
+	@include size(4);
+	@include size-lg(6);
+	@include size-md(6);
+	@include size-sm(12);
+
+	display: flex;
+	flex-direction: column;
+	padding: rem(12) rem(8) rem(20) rem(8);
+	margin-bottom: rem(30);
+	min-height: rem(320);
+	z-index: 400;
+	position: relative;
+	border-bottom-left-radius: rem(8);
+	border-bottom-right-radius: rem(8);
+	background-color: $main-white;
+	@include transition($easeOut-2s, box-shadow, transform);
+	box-shadow: $box-shadow-static;
+
+		&:hover{
+			transform: translate(0, -10px);
+			box-shadow: $main-shadow-hover;
+		}
+
+		&:hover > .card-tools{
+			visibility: visible;
+			display: flex;
+			flex-direction: column;
+			z-index: 100;
+			animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+		}
+
+		.card-head{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+
+			.head-image{
+				display: inline-flex;
+				cursor: zoom-in;
+			}
+
+			.product-description{
+				margin: rem(6) 0 rem(10);
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-align: center;
+				@include font(em(20), 500);
+			}
+		}
+		
+		.card-body{
+			padding-top: rem(8);
+			margin: auto 0 0 0;
+		}
+
+		.card-tools{
+			z-index: -1;
+			visibility: hidden;
+			position: absolute;
+			top: rem(14);
+			right: rem(8);
+
+			button{
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: rem(36);
+				height: rem(36);
+				padding: 0;
+				border: 1px solid $main-orange;
+				border-radius: 50%;
+				background-color: transparent;
+				@include transition($easeOut-2s, border, background-color, color);
+
+					&:hover{
+						background-color: $main-orange;
+					}
+
+					&:hover > .icon-circle{
+						color: $main-white;
+					}
+
+					&.active{
+						background-color: $main-orange;
+
+							& > .icon-circle{
+								color: $main-white;
+							}
+					}
+			}
+
+			.icon-circle{
+				display: inline-flex;
+				font-size: em(18);
+				color: $main-orange;
+			}
+		}
+		
+		&__txt{
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+			text-overflow: -o-ellipsis-lastline;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			height: 3.3em;
+			@include font(em(16), 300);
+			line-height: 1.1;
+			cursor: help;
+			color: $main-element-grey;
+		}
+
+		@media screen and (max-width: 36rem){
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+}
+
+.mfp-close-btn-in .mfp-close{
+	display: none;
+}

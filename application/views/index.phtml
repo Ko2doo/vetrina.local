@@ -1,0 +1,72 @@
+<?php $this->view('header'); ?>
+<section class="items-section">
+  <div class="container">
+    <div class="row">
+      <aside class="content-sidebar">
+        <nav class="content-sidebar__nav-item">
+          <ul class="content-sidebar__list-item">
+            <li class="content-sidebar__li-item">
+              <a href="#/" class="content-sidebar__link-item">Категория 1</a>
+            </li>
+            <li class="content-sidebar__li-item">
+              <a href="#/" class="content-sidebar__link-item">Категория 2</a>
+            </li>
+            <li class="content-sidebar__li-item">
+              <a href="#/" class="content-sidebar__link-item">Категория 3</a>
+            </li>
+
+            <li class="content-sidebar__li-item">
+              <a href="#/" class="content-sidebar__link-item">Категория 4</a>
+            </li>
+
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="box-items">
+        <?php foreach ($items as $item):?>
+
+        <div class="card-item">
+          <header class="card-head">
+            <a class="image-popup-vertical-fit" href="<?= $item['image'] ?>">
+              <img src="<?= $item['image'] ?>" alt="image" class="head-image">
+            </a>
+
+            <p class="product-description">
+              <?= e($item['title'])?>
+            </p>
+          </header>
+
+          <div class="card-body">
+            <a href="#box-popup-anim" class="card-item__txt popup-modal">
+              <?= e($item['descr'])?>
+            </a>
+            <div id="box-popup-anim" class="modal-popup mfp-hide">
+              <button class="popup-modal-dismiss">
+                <i class="fa fa-times popup-icon" aria-hidden="true"></i>
+              </button>
+
+              <div class="popup-content">
+                <h3 class="popup-heading"><?= e($item['title'])?></h3>
+                <p class="popup-txt">
+                  <?= e($item['descr'])?>
+                </p>
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="card-tools">
+            <button class="btn-favorites">
+              <i class="fa fa-heart-o icon-circle" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <?php endforeach;?>
+      </div>
+
+    </div>
+  </div>
+</section>
+<?php $this->view('footer'); ?>

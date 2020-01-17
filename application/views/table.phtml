@@ -1,0 +1,30 @@
+<?php $this->view('header'); ?>
+<section class="mobileTable">
+	<div class="container">
+		<h2 class="table-title">Таблица умножения</h2>
+		<table class="cwdtable" cellspacing="0" cellpadding="1" border="1">
+			<?php /* for($row = 1; $row <= 10; $row++): ?>
+				<tr>
+					<?php for($col = 1; $col <= 10; $col++): ?>
+						<?php if ( $col == 1 || $row == 1 ): ?>
+							<th><?= $row * $col ?></th>
+						<?php else: ?>
+							<td><?= $row * $col ?></td>
+						<?php endif; ?>
+					<?php endfor; ?>
+				</tr>
+			<?php endfor; */?>
+
+			<?php for( $row = 0; $row < 8; $row++ ): ?>
+				<tr>
+					<?php for( $col = 0; $col < 8; $col++ ): ?>
+						<?php if( ($row + $col + 1) % 2 == 0 ): ?>
+							<td><?= $row ?></td>
+						<?php endif; ?>
+					<?php endfor; ?>
+				</tr>
+			<?php endfor;?>
+		</table>
+	</div>
+</section>
+<?php $this->view('footer'); ?>

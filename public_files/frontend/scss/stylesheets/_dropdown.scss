@@ -1,0 +1,45 @@
+.dropdown-menu{
+
+	&.is-open{
+		visibility: visible;
+		display: flex;
+		flex-direction: column;
+		z-index: 600;
+		animation: .5s open-menu;
+		animation-fill-mode: forwards;
+		background-color: $main-black;
+	}
+
+	.counter-bar{
+		display: flex;
+		justify-content: flex-start;
+		padding-bottom: rem(6);
+		border-bottom: 1px solid $main-bg;
+
+			&__li-item{
+				width: 100%;
+				display: flex;
+				align-items: center;
+				padding: rem(8) 0 rem(8) rem(12);
+			}
+
+			&__link-item{
+				position: relative;
+				font-size: em(30);
+				color: $main-orange;
+			}
+			
+			&__icon-item{}
+			
+			.fav-counter{
+				position: absolute;
+				top: rem(-8);
+				right: rem(-12);
+				border-radius: rem(30);
+				padding: rem(4) rem(6) rem(4) rem(6);
+				@include font(em(6), 500);
+				background-color: $main-lightblue;
+				color: $main-white;
+			}
+	}
+}

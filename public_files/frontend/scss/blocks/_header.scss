@@ -1,0 +1,95 @@
+.header{
+	padding: rem(8) 0 rem(8);
+	max-height: rem(46);
+	height: auto;
+	position: relative;
+	background-color: $main-black;
+	box-shadow: $box-shadow-header;
+
+		&-content{
+			@include row-flex();
+			width: 100%;
+			position: relative;
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		.menu-content{
+			visibility: hidden;
+			display: none;
+			position: absolute;
+			right: rem(22);
+			z-index: -1;
+			background-color: $main-2a2a;
+
+				&.is-open{
+					max-width: rem(230);
+					width: 100%;
+					visibility: visible;
+					display: flex;
+					flex-direction: column;
+					z-index: 1000;
+					top: rem(40);
+					animation: scale-up-ver-top 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+					box-shadow: 0 18px 20px 0 rgba(8, 8, 8, 0.56);
+
+						@media screen and (max-width: 62rem){
+							max-width: 70%;
+							left: 15%;
+							top: rem(60);
+						}
+				}
+		}
+
+		.account-setting{
+			@include col();
+			@include size(3);
+			@include size-md(12);
+
+			display: flex;
+			justify-content: flex-end;
+
+			.btn-open{
+				border: none;
+				background-color: transparent;
+				color: $main-white;
+			}
+
+				&__navigation{
+					padding: rem(8) 0 rem(4);
+				}
+
+				&__link{
+					@include font(em(14), 500);
+					padding: rem(8) 0 rem(8) rem(12);
+					display: flex;
+					justify-content: flex-start;
+					color: $invis-menu-txt;
+					border-bottom: 1px solid $main-4343;
+					@include transition($easeInOut-2s, color);
+
+						&:last-child{
+							border-bottom: 0;
+						}
+
+						&:hover{
+							color: $mark-green;
+						}
+						
+						.link-txt{
+							display: inline-flex;
+						}
+
+						.link-icon{
+							width: rem(25);
+						}
+				}
+		}
+
+		.socialmedia-block{
+			@include col();
+			@include size(9);
+			@include size-md(12);
+		}
+
+}// --end header-section

@@ -1,0 +1,57 @@
+// храним тут стили для модальных окон
+.modal-popup{
+	display: flex;
+	flex-direction: column;
+	max-width: 100%;
+	width: 75%;
+	max-height: 480px;
+	height: auto;
+	overflow-y: visible;
+	overflow-x: hidden;
+	padding: rem(14) rem(14) rem(25) rem(14);
+	margin: 0 auto;
+	background-color: $main-white;
+
+		.popup-modal-dismiss{
+			width: auto;
+			height: auto;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: auto;
+			padding: rem(6);
+			border: none;
+			background-color: transparent;
+			transition: transform 500ms, color 200ms;
+
+				&:hover{
+					transform: rotate(90deg);
+					color: $main-element-grey;
+				}
+		}
+
+		.popup{
+
+				&-icon{
+					font-size: em(18);
+				}
+				
+				&-content{
+					margin-top: rem(12);
+					display: flex;
+					flex-direction: column;
+				}
+				
+				&-heading{
+					@include font(em(24), 500);
+					text-align: center;
+					
+					color: $main-black;
+				}
+				
+				&-txt{
+					margin-top: em(14);
+					color: $main-element-grey;
+				}
+		}
+}//--end modal
