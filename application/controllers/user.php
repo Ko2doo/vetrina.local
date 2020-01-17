@@ -77,9 +77,10 @@ class User extends Controller{
 		// если форма пуста:
 		if ( isset($_POST['submit']) ) {
 			// получаем данные с формы
-			$email 		= trim(strip_tags($_POST['email']));
-			$name			= trim(strip_tags($_POST['name']));
-			$pass			= trim(strip_tags($_POST['pass']));
+			$email 			= trim(strip_tags($_POST['email']));
+			$name				= trim(strip_tags($_POST['name']));
+			$pass				= trim(strip_tags($_POST['pass']));
+			$rep_pass		= trim(strip_tags($_POST['rep_pass']));
 
 			$db		= App::db();
 			$hash = PASSWORD_DEFAULT;
@@ -125,7 +126,11 @@ class User extends Controller{
 					if ( $length < 8 ) {
 						$errors['pass'][] = 'Пароль должен быть не меньше 8 символов!';
 					} else {
-						$pass = password_hash($pass, $hash);
+						if ( $pass != $rep_pass ) {
+							$errors['rep_pass'][] = 'Не совпадение паролей';
+						} else {
+							$pass = password_hash($pass, $hash);
+						}
 					}
 			}
 
