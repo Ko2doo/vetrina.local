@@ -21,11 +21,11 @@
 				</div>
 
 				<div class="form-group">
-					<label class="form-label__item" for="pass">Введите пароль:</label>
+					<label class="form-label__item" for="pass">Придумайте пароль:</label>
 						<?php if( isset($errors['pass']) ): ?>
 							<span class="error-message"><?= implode('<br>', $errors['pass']) ?></span>
 						<?php endif; ?>
-						<input class="form-input__item" id="pass" type="password" name="pass" value="<?= $pass ?>">
+						<input class="form-input__item" id="pass" type="password" name="pass" value="">
 				</div>
 
 				<div class="form-group">
@@ -36,7 +36,7 @@
 						<input class="form-input__item" id="rep_pass" type="password" name="rep_pass" value="">
 				</div>
 				
-				<input class="btn-black" name="submit" type="submit" value="Регистрация">
+				<input class="btn btn--black" name="submit" type="submit" value="Регистрация">
 			</form>
 
 		</div>

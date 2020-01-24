@@ -66,6 +66,10 @@
 					
 					padding: rem(22) 0 0;
 
+						.btn{
+							margin: 0 auto;
+						}
+
 					@media screen and (max-width: 62rem){
 						margin: 0 auto;
 					}

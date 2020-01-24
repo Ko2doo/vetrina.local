@@ -1,0 +1,26 @@
+// from all buttons
+.btn{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: auto;
+	border-radius: rem(8);
+	padding: rem(6) rem(10);
+	@include font(em(16), 400);
+	cursor: pointer;
+	@include transition($easeInOut-2s, border, background-color, color);
+
+		&--black{
+			background-color: $main-black;
+			color: $main-bg;
+			border: 1px solid $main-black;
+
+			&:hover,
+			&:focus{
+				outline: none;
+				background-color: transparent;
+				border: 1px solid $main-black;
+				color: $main-black;
+			}
+		}
+}

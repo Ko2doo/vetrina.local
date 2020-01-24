@@ -76,29 +76,6 @@
 		
 		&__label-image{}
 
-		.btn-black{
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			width: auto;
-			border-radius: rem(8);
-			padding: rem(6) rem(10);
-			margin: 0 auto;
-			@include font(em(16), 400);
-			background-color: $main-black;
-			color: $main-bg;
-			border: 1px solid $main-black;
-			cursor: pointer;
-			@include transition($easeInOut-2s, border, background-color, color);
-
-				&:hover,
-				&:focus{
-					outline: none;
-					background-color: transparent;
-					border: 1px solid $main-black;
-					color: $main-black;
-				}
-		}
 
 		// @media screen and (max-width: 62rem){
 		// 	margin: 0 auto;

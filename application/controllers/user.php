@@ -115,8 +115,12 @@ class User extends Controller{
 					}
 
 			}
-			
-			
+
+			// проверяем имя:
+			if ( empty($name) ) {
+				$errors['name'][] = 'Укажите своё имя';
+			}
+
 			// проверяем пароль:
 			if ( empty($pass) ) {
 				$errors['pass'][] = 'Введите пароль!';
@@ -149,7 +153,7 @@ class User extends Controller{
 
 	}
 
-	static function isLoggedIn() {
+	public function isLoggedIn() {
 		return isset($_SESSION['user']);
 	}
 
