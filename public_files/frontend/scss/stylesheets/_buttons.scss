@@ -5,21 +5,33 @@
 	justify-content: center;
 	width: auto;
 	border-radius: rem(8);
+	border: rem(1) solid $main-dark-grey;
 	padding: rem(6) rem(10);
 	@include font(em(16), 400);
 	cursor: pointer;
+	background-color: $main-ffff;
+	color: $main-dark-grey;
 	@include transition($easeInOut-2s, border, background-color, color);
 
+		&:hover,
+		&:focus{
+			outline: none;
+			background-color: $main-4343;
+			border: rem(1) solid $main-ffff;
+			color: $main-ffff;
+		}
+
+		// модификаторы:
 		&--black{
 			background-color: $main-black;
 			color: $main-bg;
-			border: 1px solid $main-black;
+			border: rem(1) solid $main-black;
 
 			&:hover,
 			&:focus{
 				outline: none;
 				background-color: transparent;
-				border: 1px solid $main-black;
+				border: rem(1) solid $main-black;
 				color: $main-black;
 			}
 		}
