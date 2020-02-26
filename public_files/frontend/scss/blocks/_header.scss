@@ -49,6 +49,28 @@
 			display: flex;
 			justify-content: flex-end;
 
+			.user-name{
+				position: relative;
+				display: flex;
+				align-items: center;
+				flex-grow: 1;
+				padding-left: rem(22);
+				@include font(em(14), 400);
+				cursor: inherit;
+				color: $main-lightblue;
+
+					&::before{
+						content: '\f2c0';
+						font-family: FontAwesome;
+						font-weight: normal;
+						position: absolute;
+						left: 0;
+						width: rem(20);
+						font-size: em(16);
+						color: $main-lightsky;
+					}
+			}
+
 			.btn-open{
 				border: none;
 				background-color: transparent;

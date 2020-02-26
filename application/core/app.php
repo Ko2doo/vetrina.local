@@ -7,7 +7,7 @@ class App {
 	static $controllers = [
 		'index' => '',
 		'user' => '',
-		'cabinet' => '',
+		'advert' => '',
 		'admin' => '',
 		'table' => '',
 	];

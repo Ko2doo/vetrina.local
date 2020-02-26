@@ -53,6 +53,13 @@ $(function(){
 			}, 1000);
 	});
 
+	// закрываем меню по клику в любое место
+	$(document).on('click', function(e) {
+	  if ($(e.target).parents('.dropdown-menu').length == 0) {
+	      $dropdowm_menu.removeClass('is-open');
+	  }
+	});
+
 	// Magnific-popup
 	$('.popup-modal').magnificPopup({
 		type: 'inline',
@@ -107,38 +114,130 @@ $(function(){
 		}
 	});
 
-	//табы:
-	jQuery.fn.lightTabs = function(options){
+	$.fn.liHarmonica = function (params) {
+	  var p = $.extend({
+	    currentClass: 'cur', //Класс для выделенного пункта меню
+	    onlyOne: false, //true - открытым может быть только один пункт, 
+	    //false - число открытых одновременно пунктов не ограничено
+	    speed: 500, //Скорость анимации
+	    searchToString: false, // показать поиск по содержанию (по умолчанию скрыто)
+	    badge: false,
+	    arrow: false
+	  }, params);
+	  return this.each(function () {
+	    var
+	    el = $(this).addClass('harmonica-menu'),
+	        linkItem = $('ul', el).prev('a');
+	    el.children(':last').addClass('last');
 
-		var createTabs = function(){
-			tabs = this;
-				 i = 0;
+	    $('ul', el).each(function () {
+	      $(this).children(':last').addClass('last');
+	    });
 
-			showPage = function(i){
-			  $(tabs).children("div").children(".tabs-item").hide().removeClass('animate');
-			  $(tabs).children("div").children(".tabs-item").eq(i).show().addClass('animate');
-			  $(tabs).children("aside").children(".tab-nav").children(".tap-me").removeClass("active");
-			  $(tabs).children("aside").children(".tab-nav").children(".tap-me").eq(i).addClass("active");
-			}
+	    $('ul', el).prev('a').addClass('harFull');
+	    el.find('.' + p.currentClass).parents('ul').show().prev('a').addClass(p.currentClass).addClass('harOpen');
 
-			showPage(0);
+	    //searchToString
+	    if (p.searchToString) {
+	      jQuery.expr[':'].Contains = function(a,i,m){
+	        return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+	      };
 
-			$(tabs).children("aside").children(".tab-nav").children(".tap-me").each(function(index, element){
-			  $(element).attr("data-tab", i);
-			  	i++;       
-			});
+	      function filter_list(header, list){
+	        var menu = $('.harmonica-menu');
 
-			$(tabs).children("aside").children(".tab-nav").children(".tap-me").click(function(){
-			  showPage(parseInt($(this).attr("data-tab")));
-			});
-		};
-		return this.each(createTabs);
+	        var wrap 	= menu.wrapAll('<div class="harmonica-container"></div>'),
+	            form 	= $('<form>', {
+	              id: 'form',
+	              class: 'filter_form',
+	              action: '#',
+	            }),
+	            input = $('<input>', {
+	              class: 'filter_input',
+	              type: 'text',
+	              placeholder: 'Поиск по содержанию'
+	            });
+
+	        var createSearchBlock = $('.harmonica-container')
+		        .prepend('<div class="search-block"></div>')
+			        $('.search-block')
+			          .append(form)
+					        $('.filter_form')
+					          .append(input);
+
+	        // динамически создаем форму с поиском
+	        createSearchBlock.appendTo(header);
+
+	        // настройка поиска:
+	        $(input)
+	          .change( function() {
+	          var filter = $(this).val();
+
+	          if(filter) {
+	            $matches = $(list).find("a:Contains('" + filter + "')").parents();
+	            $matches.closest('a').slideDown(p.speed);
+	            $('li', list).not($matches).slideUp(p.speed);
+	            $matches.slideDown(p.speed);
+	          } else {
+	            $(list).find('li').slideDown(p.speed);
+	            $(list).find('.harmonica-subcontent').css('display', 'none');
+	          }
+	          return false;
+	        })
+          .keyup( function() {
+          	$(this).change();
+        	});
+	      }
+
+	      $(function () {
+	        filter_list($('#form'), $('#list'));
+	      });
+	    }
+
+	    // badge
+	    if (p.badge) {
+	      $('.harmonica-menu li').each(function() {
+	        var badge = $('<span>', {class: 'badge'});
+	        badge.appendTo( $(this).children('a:not(:last-child)') );
+
+	        // у harmonica-menu li ищем детей (тег а) в теге "а" ищем
+	        var counter = $(this).children('a').children('.badge');
+
+	        // если есть то: считаем и записываем кол-во в badge
+	        if ( counter.length > 0 ) {
+	          counter.text($(this)
+	                       .children('ul')
+	                       .children('li').length);
+	        }
+	      });
+	    }
+
+	    // arrow
+	    if (p.arrow) {
+	      $('.harmonica-menu li').each(function() {
+	        var badge = $('<span>', {class: 'arrow'});
+	        badge.appendTo( $(this).children('a:not(:last-child)') );
+	      });
+	    }
+
+	    linkItem.on('click', function () {
+
+	      if ($(this).next('ul').is(':hidden')) {
+	        $(this).addClass('harOpen');
+	      } else {
+	        $(this).removeClass('harOpen');
+	      }
+
+	      // если true значит при клике на категорию закрываем предыдущую
+	      if (p.onlyOne) {
+	        $(this).closest('ul').closest('ul').find('ul').not($(this).next('ul')).slideUp(p.speed).prev('a').removeClass('harOpen');
+	        $(this).next('ul').slideToggle(p.speed);
+	      } else {
+	        $(this).next('ul').stop(true).slideToggle(p.speed);
+	      }
+	      return false;
+	    });
+	  });
 	};
-	
-	//инициализация:
-	$(document).ready(function(){
-  	$(".tabs").lightTabs();
-	});
-
 
 });

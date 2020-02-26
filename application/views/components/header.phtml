@@ -28,6 +28,11 @@
       </div>
 
       <div class="account-setting">
+        <?php if( isset($_SESSION['user']) ): ?>
+            <!--Если юзер авторизован:-->
+          <span class="user-name"><?= $_SESSION['user']['name']?></span>
+        <?php endif; ?>
+          <!--dropdown menu-->
         <div class="dropdown-menu">
           <button class="btn-open">
             <i class="fa fa-bars" aria-hidden="true"></i>
@@ -49,9 +54,9 @@
                 <i class="fa fa-home link-icon" aria-hidden="true"></i>
                 <span class="link-txt">На главную</span>
               </a>
-              <a href="/user/cabinet" target="_blank" class="account-setting__link kabinet">
-                <i class="fa fa-user-circle-o link-icon" aria-hidden="true"></i>
-                <span class="link-txt">Персональный кабинет</span>
+              <a href="/user/advert" target="_blank" class="account-setting__link kabinet">
+                <i class="fa fa-pencil-square-o link-icon" aria-hidden="true"></i>
+                <span class="link-txt">Добавить объявление</span>
               </a>
               <a href="/user/logout" class="account-setting__link unlogin">
                 <i class="fa fa-sign-out link-icon" aria-hidden="true"></i>

@@ -110,7 +110,7 @@ gulp.task('font', function() {
 
 gulp.task('clear-cache', function (callback) {
   return cache.clearAll();
-})
+});
 
 // Следим за файлами
 gulp.task('watch', function() {

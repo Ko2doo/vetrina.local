@@ -52,7 +52,7 @@ class User extends Controller{
 			if ( empty($errors) ) {
 				session_start();
 				$_SESSION['user'] = $user;
-				$this->redirect('/user/cabinet');
+				$this->redirect('/user/advert');
 			}
 
 
@@ -151,65 +151,70 @@ class User extends Controller{
 			['email' => $email, 'name' => $name, 'pass' => $pass, 'errors' => $errors]);
 	}
 
-	public function addAction() {
-		// функция публикации объявлений и добавления их в БД
-		$errors = [];
-		$name 	= '';
-		$descr	= '';
-		$db			= App::db();
+	// public function addAction() {
+	// 	// функция публикации объявлений и добавления их в БД
+	// 	$errors = [];
+	// 	$name 	= '';
+	// 	$descr	= '';
+	// 	$db			= App::db();
 
-		// $post = $_POST;
+	// 	// $post = $_POST;
 
-		$name	 	= iconv_strlen($post['name']);
-		$descr 	= iconv_strlen($post['descr']);
-		$image 	= $post['image'];
+	// 	$name	 	= iconv_strlen($post['name']);
+	// 	$descr 	= iconv_strlen($post['descr']);
+	// 	$image 	= $post['image'];
 
-		if (isset($_POST['submit'])) {
+	// 	if (isset($_POST['submit'])) {
 			
-			// проверяем указано ли название:
-			if (empty($name)) {
-				$errors['name'][] = 'Укажите название';
-			} else {
-				if ( $name < 4 or $name > 100 ) {
-					$errors['name'][] = 'Название должно содержать от 4 до 100 символов';
-				}
-			}
+	// 		// проверяем указано ли название:
+	// 		if (empty($name)) {
+	// 			$errors['name'][] = 'Укажите название';
+	// 		} else {
+	// 			if ( $name < 4 or $name > 100 ) {
+	// 				$errors['name'][] = 'Название должно содержать от 4 до 100 символов';
+	// 			}
+	// 		}
 
-			// проверяем указано ли описание:
-			if (empty($descr)) {
-				$errors['descr'][] = 'Укажите описание';
-			} else {
-				if ( $descr < 10 or $descr > 5000 ) {
-					$errors['descr'][] = 'Текст должен содержать от 10 до 5000 символов';
-				}
-			}
+	// 		// проверяем указано ли описание:
+	// 		if (empty($descr)) {
+	// 			$errors['descr'][] = 'Укажите описание';
+	// 		} else {
+	// 			if ( $descr < 10 or $descr > 5000 ) {
+	// 				$errors['descr'][] = 'Текст должен содержать от 10 до 5000 символов';
+	// 			}
+	// 		}
 
-      // // проверка на файл
-      // if (empty($_FILES['img'])) {
-      //   $errors['image'][] = 'Изображение не выбрано';
-      //     return true; // пропускаем без картинки
-      // }
+ //      // проверка на файл
+ //      if (empty($_FILES['img'])) {
+ //        $errors['image'][] = 'Изображение не выбрано';
+ //          return true; // пропускаем без картинки
+ //      }
+
+	// 		if ( empty($errors) ) {
+	// 			session_start();
+	// 			$select = "INSERT INTO posts (name, descr, image) VALUES('$name', '$descr', '$image')";
+	// 			$result = $db->query($select);
+	// 			$this->message('Добавлено');
+	// 		}
 
 
-		$this->view('cabinet',
-			['name' => $name, 'descr' => $descr, 'image' => $image, 'errors' => $errors]);
+	// 	$this->view('cabinet',
+	// 		['name' => $name, 'descr' => $descr, 'image' => $image, 'errors' => $errors]);
 
-		} //--end-if
-
-
-	}
+	// 	} //--end-if
+	// }
 
 	static function isLoggedIn() {
 		return isset($_SESSION['user']);
 	}
 
-	function cabinetAction() {
+	function advertAction() {
 
 		// проверяем авторизацию юзера
 		if ( !User::isLoggedIn() ) {
 			$this->redirect('/user/login');
 		}
 
-		$this->view('cabinet');
+		$this->view('advert');
 	}
 }

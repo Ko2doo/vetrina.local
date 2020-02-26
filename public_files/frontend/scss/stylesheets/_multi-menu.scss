@@ -1,0 +1,75 @@
+// стили для многоуровнего меню:
+.harmonica-menu{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+		.harmonica-subcontent{
+			display: none;
+			padding: 0;
+		}
+
+		.cat-name,
+		.model-name{
+			@extend %link-decor;
+		}
+
+		.item-name{
+			@extend %link-decor;
+			& > a{
+				border-bottom: 1px solid $main-e1e8;
+				@include transition($easeOut-1s, border-bottom, color);
+
+				&:hover{
+					border-bottom: 1px solid $mark-green;
+				}
+			}
+		}
+
+		& > li.cat-name > ul > li.item-name > a{
+			padding-left: rem(8);
+		}
+
+		& > li.cat-name > ul > li.item-name > ul > li.model-name > a{
+			padding-left: rem(16);
+		}
+
+		& a{
+			color: $invis-menu-txt;
+
+			&:hover{
+				color: $main-2a2a;
+			}
+		}
+
+		.badge{
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: auto;
+			margin-right: rem(8);
+		  padding: rem(3) rem(7);
+		  @include font(em(11), 500);
+		  line-height: 1;
+		  text-align: center;
+		  white-space: nowrap;
+		  vertical-align: middle;
+		  border-radius: rem(10);
+			background-color: $main-lightsky;
+			color: $main-white;
+		}
+
+		.arrow{
+			position: absolute;
+			right: 0;
+			display: inline-flex;
+
+			&::before{
+				content: '\f105';
+				font-family: FontAwesome;
+				font-size: rem(18);
+				color: $main-arrow-bg;
+			}
+		}
+
+}
