@@ -151,70 +151,74 @@ class User extends Controller{
 			['email' => $email, 'name' => $name, 'pass' => $pass, 'errors' => $errors]);
 	}
 
-	// public function addAction() {
-	// 	// функция публикации объявлений и добавления их в БД
-	// 	$errors = [];
-	// 	$name 	= '';
-	// 	$descr	= '';
-	// 	$db			= App::db();
-
-	// 	// $post = $_POST;
-
-	// 	$name	 	= iconv_strlen($post['name']);
-	// 	$descr 	= iconv_strlen($post['descr']);
-	// 	$image 	= $post['image'];
-
-	// 	if (isset($_POST['submit'])) {
-			
-	// 		// проверяем указано ли название:
-	// 		if (empty($name)) {
-	// 			$errors['name'][] = 'Укажите название';
-	// 		} else {
-	// 			if ( $name < 4 or $name > 100 ) {
-	// 				$errors['name'][] = 'Название должно содержать от 4 до 100 символов';
-	// 			}
-	// 		}
-
-	// 		// проверяем указано ли описание:
-	// 		if (empty($descr)) {
-	// 			$errors['descr'][] = 'Укажите описание';
-	// 		} else {
-	// 			if ( $descr < 10 or $descr > 5000 ) {
-	// 				$errors['descr'][] = 'Текст должен содержать от 10 до 5000 символов';
-	// 			}
-	// 		}
-
- //      // проверка на файл
- //      if (empty($_FILES['img'])) {
- //        $errors['image'][] = 'Изображение не выбрано';
- //          return true; // пропускаем без картинки
- //      }
-
-	// 		if ( empty($errors) ) {
-	// 			session_start();
-	// 			$select = "INSERT INTO posts (name, descr, image) VALUES('$name', '$descr', '$image')";
-	// 			$result = $db->query($select);
-	// 			$this->message('Добавлено');
-	// 		}
-
-
-	// 	$this->view('cabinet',
-	// 		['name' => $name, 'descr' => $descr, 'image' => $image, 'errors' => $errors]);
-
-	// 	} //--end-if
-	// }
-
 	static function isLoggedIn() {
 		return isset($_SESSION['user']);
 	}
 
 	function advertAction() {
-
 		// проверяем авторизацию юзера
 		if ( !User::isLoggedIn() ) {
 			$this->redirect('/user/login');
 		}
 
 		$this->view('advert');
+	}
+
+	// для страницы добавления категорий
+	function cat_settingsAction(){
+		// проверяем авторизацию юзера
+		if ( !User::isLoggedIn() ) {
+			$this->redirect('/user/login');
+		}
+
+		// функция публикации объявлений и добавления их в БД
+		$errors = [];
+		$cat_name 		= '';
+		$subcat_name	= '';
+		$db	= App::db();
+
+
+		if (isset($_POST['submit'])) {
+			$cat_name	 		= iconv_strlen($_POST['cat_name']);
+			$subcat_name 	= iconv_strlen($_POST['subcat_name']);
+
+			// проверяем введено ли название
+			if ( empty($cat_name) ) {
+				$errors['cat_name'][] = 'Введите название категории!';
+			} else{
+				if ( $cat_name < 4 or $cat_name > 35 ) {
+					$errors['cat_name'][] = 'Название должно содержать от 4 до 35 символов';
+				} else {
+						// сравниваем с данными в БД
+						$sql 	= 'SELECT COUNT(*) FROM cat WHERE name = ?';
+						$stmt = $db->prepare($sql);
+						$stmt->bindValue(1, $cat_name);
+
+						// Проверяем успешность запроса
+						if ( $stmt->execute() ) {
+							// существует ли запись?
+							$name_exist = $stmt->fetchColumn();
+
+							// выводим ошибку если существует
+							if ( $name_exist ) {
+								$errors['cat_name'][] = 'Такая запись уже существует!';
+							}
+						}
+					}
+			}
+
+			// проверяем второе поле
+			if ( empty($subcat_name) ) {
+				$errors['subcat_name'][] = 'Введите название подкатегории';
+			} else {
+					if ( $subcat_name < 4 or $subcat_name > 35 ) {
+						$errors['subcat_name'][] = 'Название должно содержать от 4 до 35 символов';
+					}
+			}
+
+		} //--end if!
+
+		$this->view('cat_settings',
+			['cat_name' => $cat_name, 'subcat_name' => $subcat_name, 'errors' => $errors]);
 	}
 }

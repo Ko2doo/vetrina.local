@@ -10,6 +10,7 @@ class App {
 		'advert' => '',
 		'admin' => '',
 		'table' => '',
+		'cat_settings' => '',
 	];
 
 	static $defaultController = 'index';

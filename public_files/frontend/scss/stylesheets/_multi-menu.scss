@@ -10,20 +10,9 @@
 		}
 
 		.cat-name,
-		.model-name{
-			@extend %link-decor;
-		}
-
+		.model-name,
 		.item-name{
 			@extend %link-decor;
-			& > a{
-				border-bottom: 1px solid $main-e1e8;
-				@include transition($easeOut-1s, border-bottom, color);
-
-				&:hover{
-					border-bottom: 1px solid $mark-green;
-				}
-			}
 		}
 
 		& > li.cat-name > ul > li.item-name > a{
@@ -32,6 +21,20 @@
 
 		& > li.cat-name > ul > li.item-name > ul > li.model-name > a{
 			padding-left: rem(16);
+		}
+
+		& > li.cat-name > ul > li.item-name > ul{
+			border-bottom: 1px solid #e1e8ed;
+			background-color: white;
+		}
+
+		& > li.cat-name > ul > li.item-name > a.harOpen{
+			margin-bottom: 0;
+			padding-top: rem(8);
+			padding-bottom: rem(8);
+			background-color: white;
+			border-bottom: 1px solid #e1e8ed;
+			@include transition($easeOut-2s, padding, background-color)
 		}
 
 		& a{
@@ -61,7 +64,7 @@
 
 		.arrow{
 			position: absolute;
-			right: 0;
+			right: rem(2);
 			display: inline-flex;
 
 			&::before{

@@ -1,0 +1,90 @@
+.category-add{
+	@extend %section-padding;
+
+
+	.content {@extend %content;}
+
+	.cat-settings{
+		@include col();
+		@include size(12);
+		@include size-md(12);
+		@include size-sm(12);
+		@include row-flex();
+		@include md-block(){
+			margin: 0 auto;
+		}
+	}
+
+	// переназначим стили у формы
+	.form{
+		@include col();
+		@include size(6);
+		@include size-md(12);
+		@include sm-block{
+			margin-left: 0;
+			margin-right: 0;
+			margin-bottom: rem(20);
+
+				&::after{
+					content: '';
+					border-bottom: 1px solid #e1e8ed;
+					margin-top: rem(20);
+				}
+
+				&:last-child{
+					margin-bottom: 0;
+						&::after{
+							border-bottom: none;
+						}
+				}
+		}
+
+			&-control{
+				padding-top: 0;
+				padding-bottom: 0;
+				height: rem(31);
+			}
+
+			&-group{
+					&__head{
+						margin-bottom: 0;
+					}
+
+					&__body{
+						display: flex;
+						flex-direction: initial;
+						flex-wrap: wrap;
+						align-items: center;
+						margin-top: rem(12);
+
+							& > select{
+								margin-top: 0;
+								width: 60%;
+								@include sm-block(){
+									width: 100%;
+									flex-grow: 1;
+									margin-bottom: rem(12);
+								}
+							}
+					}
+			}
+
+			.cat-name{
+
+				&__head{
+					margin-left: 0;
+				}
+			}
+
+			button[type="submit"]{
+				min-width: rem(90);
+				max-width: rem(120);
+				width: 100%;
+				margin-left: auto;
+				@include sm-block(){
+					margin: 0 auto;
+				}
+			}
+	}
+
+}

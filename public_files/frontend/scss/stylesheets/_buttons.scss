@@ -3,6 +3,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 	width: auto;
 	border-radius: rem(8);
 	border: rem(1) solid $main-dark-grey;
@@ -35,4 +36,43 @@
 				color: $main-black;
 			}
 		}
+
+		&--delete-mod{
+			justify-content: flex-end;
+			&::before{
+				content: '\f014';
+				font-family: 'FontAwesome';
+				font-size: em(18);
+				display: inline-flex;
+				position: absolute;
+				left: rem(10);
+				color: $main-orange;
+			}
+
+			&:hover{
+				&::before{
+					color: $main-black;
+				}
+			}
+		}
+
+		&--add-mod{
+			justify-content: flex-end;
+			&::before{
+				content: '\f055';
+				font-family: 'FontAwesome';
+				font-size: em(18);
+				display: inline-flex;
+				position: absolute;
+				left: rem(10);
+				color: $mark-green;
+			}
+
+			&:hover{
+				&::before{
+					color: $main-black;
+				}
+			}
+		}
+
 }

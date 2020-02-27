@@ -1,21 +1,8 @@
 .advert{
-	padding: rem(35) 0 rem(40);
+	@extend %section-padding;
 
 		.content{
-			@include row-flex();
-			@include lg-block{
-				margin-left: 0;
-				margin-right: 0;
-			}
-
-				&__head-item{
-					@include font(em(24), 500);
-					display: flex;
-					justify-content: flex-start;
-					flex-grow: 1;
-					width: 100%;
-					margin-bottom: rem(20);
-				}
+			@extend %content;
 
 				&__item-section{
 					@include size(12);

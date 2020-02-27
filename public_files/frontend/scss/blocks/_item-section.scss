@@ -1,5 +1,9 @@
 .items-section{
-	padding: rem(45) 0 rem(30);
+	@extend %section-padding;
+
+	.content {
+		@extend %content;
+	}
 
 	.box-items{
 		@include row-flex();

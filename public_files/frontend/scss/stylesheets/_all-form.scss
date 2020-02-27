@@ -8,6 +8,7 @@
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto;
+	box-sizing: border-box;
 
 		&-item{
 			display: flex;
@@ -22,6 +23,13 @@
 				& > textarea{
 					resize: none;
 					height: rem(150);
+				}
+
+				// модификатор для двойного блока
+				&--double__block{
+					display: flex;
+					flex-wrap: wrap;
+					flex-direction: initial;
 				}
 		}
 
@@ -41,13 +49,17 @@
 		}
 
 		&-file{
-			margin-top: rem(12);
+			margin-top: auto;
+				@include md-block(){
+					margin-top: rem(12);
+				}
 		}
 		
 		
 		&__label-name,
 		&__label-description,
-		&__label-image{
+		&__label-image,
+		&-select__description{
 			@include font(em(18), 400);
 			margin-left: rem(8);
 		}
@@ -76,9 +88,74 @@
 		
 		&__label-image{}
 
+		// тэг селект
+		&__select-item{
+			width: 100%;
+		}
 
-		// @media screen and (max-width: 62rem){
-		// 	margin: 0 auto;
-		// }
+		// опции
+		&__option-item{
+			@include font(em(14), 200);
+			color: $dark-a4-txt;
+		}
+
+		// подкатегория опций
+		&__optgroup-item{
+
+			&[label]{
+				@include font(em(22), 400);
+			}
+		}
+
+		// блок картинка и меню опций
+		.img-block,
+		.select-block{
+			display: flex;
+			flex-direction: column;
+			width: 50%;
+			@include md-block(){
+				flex-grow: 1;
+				width: 100%;
+			}
+		}
+
+		.select-block{
+			@include md-block(){
+				margin-top: rem(20);
+			}
+		}
+
+		// создание категории:
+		.cat-name{
+
+				&__head{
+					@include font(em(18), 400);
+					margin-left: rem(8);
+				}
+
+				&__subhead{
+					@include font(em(16), 200);
+					margin-left: rem(16);
+					margin-top: rem(8);
+				}
+
+				&__label-item{
+					display: flex;
+					flex-direction: column;
+					width: 100%;
+					margin-top: rem(8);
+					padding: 0 rem(8) 0 rem(8);
+					box-sizing: border-box;
+
+						&--double-label{
+							width: calc(100% / 2 - 16px);
+						}
+				}
+
+				&__info{
+					@include font(em(16), 200);
+					margin-left: rem(16);
+				}
+		}
 
 }//-- end form

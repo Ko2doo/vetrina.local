@@ -19,7 +19,7 @@
 }
 
 .error-message{
-	margin-left: rem(14);
+	margin: rem(11) 0 0 rem(14);
 	@include font(em(14), 400);
 	color: $main-orange;
 
@@ -32,23 +32,6 @@
 		}
 }
 
-.content__info-item{
-	@include font(em(14), 400);
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	flex-grow: 1;
-	margin-bottom: rem(20);
-
-		&::before{
-			content: '\f071';
-			font-family: 'FontAwesome';
-			font-size: em(18);
-			color: $main-orange;
-			display: inline-flex;
-			margin-right: rem(8);
-		}
-}
 
 %link-decor{
 	& > a{
@@ -58,4 +41,46 @@
 		margin-bottom: rem(8);
 		padding: rem(4) rem(12) rem(8) 0;
 	}
+}
+
+// управление паддингом на всех секциях. Для наследования юзай: @extends: %section-padding;
+%section-padding{
+	padding: rem(35) 0 rem(40);
+}
+
+%content{
+	@include row-flex();
+	@include lg-block{
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+		.content{
+			&__head-item{
+				@include font(em(24), 500);
+				display: flex;
+				justify-content: flex-start;
+				flex-grow: 1;
+				width: 100%;
+				margin-bottom: rem(20);
+			}
+
+			&__info-item{
+				@include font(em(14), 400);
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				flex-grow: 1;
+				margin-bottom: rem(30);
+
+					&::before{
+						content: '\f071';
+						font-family: 'FontAwesome';
+						font-size: em(18);
+						color: $main-orange;
+						display: inline-flex;
+						margin-right: rem(8);
+					}
+			}
+		}
 }
